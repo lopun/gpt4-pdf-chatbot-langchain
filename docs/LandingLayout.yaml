@@ -1,0 +1,16 @@
+- File: LandingLayout.js
+  Description: This file represents the layout component for the landing page.
+  Components:
+    - Name: Flex
+      Props:
+        - direction: 'column'
+        - align: 'center'
+        - w: '100%'
+        - maxW: { xl: '1200px' }
+        - m: '0 auto'
+        - { ...props }
+    - Name: Header
+    - Name: Footer
+  Libraries:
+    - react
+    - chakra-ui/react

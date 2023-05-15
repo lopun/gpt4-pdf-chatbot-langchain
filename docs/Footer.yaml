@@ -1,0 +1,26 @@
+---
+page:
+  name: Footer
+  description: A footer component for a web page
+
+selectors:
+  - Image: searchImage
+  - Link: privacyModal
+  - Link: contactModal
+
+routes:
+  - https://search.naver.com/search.naver?query=%EC%9E%85%EB%8C%80%ED%97%88%EB%8B%88
+  - https://blog.naver.com/armyhoney
+
+states:
+  - privacyModal.isOpen
+  - contactModal.isOpen
+
+file:
+  name: Footer.js
+
+components:
+  - SocialButton
+  - PrivcayNotice
+  - CustomModal
+  - InfoWithIcon

@@ -1,6 +1,7 @@
 import { Document } from 'langchain/document';
 import { readFile } from 'fs/promises';
 import { BaseDocumentLoader } from 'langchain/document_loaders';
+import {parse as YAMLParse} from 'yaml';
 
 export abstract class BufferLoader extends BaseDocumentLoader {
   constructor(public filePathOrBlob: string | Blob) {
@@ -42,6 +43,21 @@ export class CustomPDFLoader extends BufferLoader {
           ...metadata,
           pdf_numpages: parsed.numpages,
         },
+      }),
+    ];
+  }
+}
+
+export class CustomYAMLLoader extends BufferLoader {
+  public async parse(
+    raw: Buffer,
+    metadata: Document['metadata'],
+  ): Promise<Document[]> {
+    const parsed = await YAMLParse(raw.toString());
+    return [
+      new Document({
+        pageContent: JSON.stringify(parsed),
+        metadata,
       }),
     ];
   }

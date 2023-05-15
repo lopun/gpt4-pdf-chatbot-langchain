@@ -1,0 +1,122 @@
+- File: Form.js
+  Description: This file represents a form component for user login.
+  Libraries:
+    - useFormik
+    - Box
+    - Button
+    - Divider
+    - FormControl
+    - FormErrorMessage
+    - FormLabel
+    - Heading
+    - Input
+    - InputGroup
+    - InputLeftElement
+    - SimpleGrid
+    - Stack
+    - useToast
+    - InfoIcon
+    - React
+    - axios
+    - useHistory
+    - useStoreContext
+    - CONFIG
+  Components:
+    - Name: Form
+      Props:
+        - onSubmit: formik.handleSubmit
+        - style:
+            width: '80%'
+            minWidth: '320px'
+            color: 'black'
+      Children:
+        - Name: Stack
+          Props:
+            - spacing: 3
+            - mb: 8
+          Children:
+            - Name: Heading
+              Props:
+                - as: 'h2'
+                - size: 'md'
+                - color: 'gray.700'
+              Children: '로그인 정보'
+            - Name: SimpleGrid
+              Props:
+                - minChildWidth: '300px'
+                - spacing: '10px'
+              Children:
+                - Name: FormControl
+                  Children:
+                    - Name: FormLabel
+                      Props:
+                        - htmlFor: 'username'
+                      Children: '이메일'
+                    - Name: InputGroup
+                      Children:
+                        - Name: InputLeftElement
+                          Props:
+                            - children: InfoIcon
+                        - Name: Input
+                          Props:
+                            - onChange: formik.handleChange
+                            - value: formik.values.username
+                            - id: 'username'
+                            - name: 'username'
+                            - placeholder: '이메일'
+                            - aria-label: '이메일'
+                    - Name: FormErrorMessage
+                      Children: formik.errors.username
+                - Name: FormControl
+                  Children:
+                    - Name: FormLabel
+                      Props:
+                        - htmlFor: 'password'
+                      Children: '패스워드'
+                    - Name: InputGroup
+                      Children:
+                        - Name: InputLeftElement
+                          Props:
+                            - children: InfoIcon
+                        - Name: Input
+                          Props:
+                            - onChange: formik.handleChange
+                            - value: formik.values.password
+                            - id: 'password'
+                            - placeholder: '******'
+                            - name: 'password'
+                            - type: 'password'
+                            - aria-label: '패스워드'
+                            - fontFamily: 'sans-serif'
+                    - Name: FormErrorMessage
+                      Children: formik.errors.password
+            - Name: Box
+              Props:
+                - mb: 3
+            - Name: Divider
+            - Name: Box
+              Props:
+                - mb: 3
+            - Name: Button
+              Props:
+                - isLoading: formik.isSubmitting
+                - type: 'submit'
+                - w: '100%'
+                - fontFamily: 'bmhanna-pro'
+                - backgroundColor: 'primary.700'
+                - color: 'white'
+                - fontSize: 'lg'
+                - _hover:
+                    bg: 'primary.900'
+                    color: 'white'
+              Children: '로그인하기'
+            - Name: Button
+              Props:
+                - isLoading: formik.isSubmitting
+                - w: '100%'
+                - fontFamily: 'bmhanna-pro'
+                - fontSize: 'lg'
+                - _hover:
+                    bg: 'gray.200'
+                - onClick: history.push("/signup")
+              Children: '회원정보가 없으신가요?'

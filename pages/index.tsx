@@ -25,7 +25,7 @@ export default function Home() {
   }>({
     messages: [
       {
-        message: 'Hi, what would you like to learn about this legal case?',
+        message: 'Please write down test cases you want to generate.',
         type: 'apiMessage',
       },
     ],
@@ -125,7 +125,7 @@ export default function Home() {
       <Layout>
         <div className="mx-auto flex flex-col gap-4">
           <h1 className="text-2xl font-bold leading-[1.1] tracking-tighter text-center">
-            Chat With Your Legal Docs
+            Test code generator
           </h1>
           <main className={styles.main}>
             <div className={styles.cloud}>
@@ -217,14 +217,15 @@ export default function Home() {
                     onKeyDown={handleEnter}
                     ref={textAreaRef}
                     autoFocus={false}
-                    rows={1}
                     maxLength={512}
+                    rows={3}
                     id="userInput"
                     name="userInput"
                     placeholder={
                       loading
                         ? 'Waiting for response...'
-                        : 'What is this legal case about?'
+                        : `ex) Routes to test : "https://armyhoney.com/"
+Test case I want to test : Go to hero page('/') and go to login page('/login') and input username and password and try login. username is 'hong' and password is 'gildong'`.trim()
                     }
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}

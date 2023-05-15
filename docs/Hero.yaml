@@ -1,0 +1,48 @@
+Component: Hero
+Description: Represents the hero section of a webpage.
+File: hero.js
+
+Dependencies:
+  - React
+  - react-router-dom
+  - PropTypes
+  - chakra-ui/react
+  - axios
+  - CONFIG
+  - useStoreContext
+  - CardWithImage
+  - FullKitPics
+  - useInterval
+
+Props:
+  - image: (string) URL of the hero image
+  - ctaText: (string) Call-to-action button text
+
+Routes:
+  - '/fun-letter': Redirects to "/fun-letter" route
+  - '/signup': Redirects to "/signup" route
+  - '/checklist': Redirects to "/checklist" route
+
+States:
+  - questionIndex: Current index of the questions array
+  - topics: Array of newsletter topics
+
+Selectors:
+  - Link: Represents a link element
+  - Heading: Represents a heading element
+  - Text: Represents a text element
+  - Button: Represents a button element
+  - Flex: Represents a flexible container
+  - Box: Represents a container for other elements
+  - Image: Represents an image element
+  - Stack: Represents a stack of elements
+  - SimpleGrid: Represents a grid of elements
+  - useDisclosure: Hook for disclosure state management
+  - useInterval: Hook for interval state management
+  - useStoreContext: Hook for accessing store context
+
+Events:
+  - onClick: Triggers when the button or link is clicked
+
+Styles:
+  - Custom styling for various elements in the hero section

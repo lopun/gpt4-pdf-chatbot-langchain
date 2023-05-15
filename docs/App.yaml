@@ -1,0 +1,30 @@
+- File: App.js
+  Description: This file represents the main component of the React application.
+  Routes:
+    - Path: '/fun-letter'
+      Component: FunLetterServicePage
+    - Path: '/checklist'
+      Component: ChecklistPage
+    - Path: '/login'
+      Component: Login
+    - Path: '/signup'
+      Component: Signup
+    - Path: '/'
+      Component: Landing
+  States:
+    - Name: isLoggedIn
+      Type: boolean
+      InitialValue: false
+    - Name: user
+      Type: object
+      InitialValue: null
+  Functions:
+    - Name: logout
+      Description: Updates the state to log out the user.
+    - Name: getMyInfo
+      Description: Retrieves user information.
+  Libraries:
+    - react
+    - react-router-dom
+    - axios
+    - CONFIG
