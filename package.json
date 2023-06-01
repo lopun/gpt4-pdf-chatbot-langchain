@@ -22,7 +22,9 @@
     "dotenv": "^16.0.3",
     "langchain": "0.0.55",
     "lucide-react": "^0.125.0",
+    "memoizee": "^0.4.15",
     "next": "13.2.3",
+    "p-memoize": "^7.1.1",
     "pdf-parse": "1.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -32,6 +34,7 @@
     "yaml-loader": "^0.8.0"
   },
   "devDependencies": {
+    "@types/memoizee": "^0.4.8",
     "@types/node": "^18.14.6",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",

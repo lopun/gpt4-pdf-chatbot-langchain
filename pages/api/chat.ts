@@ -4,6 +4,7 @@ import { PineconeStore } from 'langchain/vectorstores/pinecone';
 import { makeChain } from '@/utils/makechain';
 import { pinecone } from '@/utils/pinecone-client';
 import { PINECONE_INDEX_NAME, PINECONE_NAME_SPACE } from '@/config/pinecone';
+import { getPineconeVectorStore } from '@/utils/pinecone';
 
 export default async function handler(
   req: NextApiRequest,
@@ -26,25 +27,17 @@ export default async function handler(
   const sanitizedQuestion = question.trim().replaceAll('\n', ' ');
 
   try {
-    const index = pinecone.Index(PINECONE_INDEX_NAME);
-
-    /* create vectorstore*/
-    const vectorStore = await PineconeStore.fromExistingIndex(
-      new OpenAIEmbeddings({}),
-      {
-        pineconeIndex: index,
-        textKey: 'text',
-        namespace: PINECONE_NAME_SPACE, //namespace comes from your config folder
-      },
-    );
+    const vectorStore = await getPineconeVectorStore();
 
     //create chain
     const chain = makeChain(vectorStore);
     //Ask a question using chat history
+    console.time('chain call');
     const response = await chain.call({
       question: sanitizedQuestion,
       chat_history: history || [],
     });
+    console.timeEnd('chain call');
 
     console.log('response', response);
     res.status(200).json(response);

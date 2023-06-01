@@ -1,6 +1,10 @@
 import { OpenAI } from 'langchain/llms/openai';
 import { PineconeStore } from 'langchain/vectorstores/pinecone';
-import { ConversationalRetrievalQAChain } from 'langchain/chains';
+import {
+  ConversationalRetrievalQAChain,
+  RetrievalQAChain,
+} from 'langchain/chains';
+import memoize from 'memoizee';
 
 const CONDENSE_PROMPT = `Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
 
@@ -14,22 +18,23 @@ const QA_PROMPT = `You are a professional Software Engineer. Use the following p
 {context}
 
 Question: {question}
-Helpful answer in markdown format(include only codes. no description):`;
+Helpful answer in markdown format(response only in code format. no description):`;
 
-export const makeChain = (vectorstore: PineconeStore) => {
-  const model = new OpenAI({
-    temperature: 0, // increase temepreature to get more creative answers
-    modelName: 'gpt-3.5-turbo', //change this to gpt-4 if you have access
-  });
+const model = new OpenAI({
+  temperature: 0, // increase temepreature to get more creative answers
+  modelName: 'gpt-4', //change this to gpt-4 if you have access
+});
 
+export const makeChain = memoize((vectorStore: PineconeStore) => {
   const chain = ConversationalRetrievalQAChain.fromLLM(
     model,
-    vectorstore.asRetriever(),
+    vectorStore.asRetriever(),
     {
       qaTemplate: QA_PROMPT,
-      questionGeneratorTemplate: CONDENSE_PROMPT,
+      // questionGeneratorTemplate: CONDENSE_PROMPT,
       returnSourceDocuments: true, //The number of source documents returned is 4 by default
     },
   );
+
   return chain;
-};
+});
